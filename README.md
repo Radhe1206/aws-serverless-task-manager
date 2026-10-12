@@ -223,3 +223,34 @@ def lambda_handler(event, context):
     except Exception as error:
         print("Unexpected error:", str(error))
         return response(500, {"error": "Internal server error"})
+
+
+# Troubleshooting
+
+## 1. Internal Server Error (500)
+- Check CloudWatch Logs.
+- Verify the TABLE_NAME environment variable.
+- Confirm the DynamoDB table exists in the same Region.
+- Review the Lambda execution role permissions.
+
+## 2. AccessDeniedException
+- Open the Lambda execution role in IAM.
+- Check the DynamoDB table ARN and Region.
+- Confirm the required actions are allowed.
+
+## 3. API returns 404
+- Verify the HTTP method and route.
+- Check that the API has been deployed.
+- Confirm the task ID exists.
+
+## 4. API returns 400
+- Check that the request body is valid JSON.
+- Ensure title is a non-empty string.
+- Use only pending or completed as status.
+
+## 5. Lambda test works but API fails
+- Check the API Gateway route integration.
+- Verify the route path and HTTP method.
+- Review the API stage and deployment settings.
+- Inspect Lambda logs for the failed invocation.
+        
