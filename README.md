@@ -1,5 +1,82 @@
 # aws-serverless-task-manager
 AWS serverless Task Manager API using Python Lambda, API Gateway and DynamoDB with CRUD operations and CloudWatch logging.
+
+
+# AWS Serverless Task Manager
+
+## Project Overview
+A serverless REST API for managing tasks using AWS Lambda,
+Amazon API Gateway and Amazon DynamoDB.
+
+## Architecture
+Client / PowerShell
+        |
+Amazon API Gateway (HTTP API)
+        |
+AWS Lambda (Python)
+        |
+Amazon DynamoDB
+
+CloudWatch Logs captures Lambda execution logs.
+
+## AWS Services
+- Amazon API Gateway
+- AWS Lambda
+- Amazon DynamoDB
+- AWS IAM
+- Amazon CloudWatch
+
+## Features
+- Create a task
+- List tasks
+- Retrieve a task by ID
+- Update a task
+- Delete a task
+- Validate request data
+- Store tasks in DynamoDB
+- Log execution details in CloudWatch
+
+## API Endpoints
+| Method | Route | Description |
+|--------|-------|-------------|
+| POST | /tasks | Create a task |
+| GET | /tasks | List tasks |
+| GET | /tasks/{id} | Get one task |
+| PUT | /tasks/{id} | Update a task |
+| DELETE | /tasks/{id} | Delete a task |
+
+## Deployment
+1. Create the DynamoDB Tasks table with taskId as a String partition key.
+2. Create a Python Lambda function.
+3. Configure the TABLE_NAME environment variable.
+4. Grant the Lambda execution role the required table permissions.
+5. Deploy the Lambda code.
+6. Create an API Gateway HTTP API.
+7. Configure the five routes and attach the Lambda integration.
+8. Deploy the API and test each endpoint.
+
+## Testing
+Test create, list, get, update and delete operations.
+Also test invalid JSON, empty titles and missing task IDs.
+
+## Security
+- Follow least-privilege IAM.
+- Do not commit credentials.
+- Monitor Lambda logs.
+- Add authentication and appropriate throttling
+  before exposing a production application.
+
+## Screenshots
+See the screenshots/ directory for deployment and test evidence.
+
+## Cleanup
+Delete the test API, Lambda function, DynamoDB table
+and unused IAM resources when the lab is complete.
+
+## Disclaimer
+This is an educational project and is not a production-ready
+authenticated task management system.
+
 lamda function.py
 import json
 import os
